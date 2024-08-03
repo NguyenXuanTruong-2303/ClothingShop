@@ -30,6 +30,7 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
+console.log(firebaseApp);
 
 // Bắt đầu code ===================================
 // ==========================Auth===========================================
