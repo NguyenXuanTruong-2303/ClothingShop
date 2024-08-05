@@ -29,8 +29,8 @@ const firebaseConfig = {
   appId: "1:1081872746810:web:d598a931b7d19a3e4d2803",
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
-console.log(firebaseApp);
+// const firebaseApp =
+initializeApp(firebaseConfig);
 
 // Bắt đầu code ===================================
 // ==========================Auth===========================================
@@ -54,7 +54,8 @@ export const createUserDocumentFromAuth = async (
 
   const userSnapshot = await getDoc(userDocRef);
   //console.log(userSnapshot);
-  // console.log(userSnapshot.exists()); //exists() trả về true/false xem dữ liệu người dùng userSnapShot đã có trên FirestoreDB chưa
+  // console.log(userSnapshot.exists());
+  //exists() trả về true/false xem dữ liệu người dùng userSnapShot đã có trên FirestoreDB chưa
 
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
