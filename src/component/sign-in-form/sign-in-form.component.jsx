@@ -21,15 +21,12 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  // const { setCurrentUser } = useContext(UserContext); // context - nhưng đã thay thé bằng onAuthStateChangedListener cho tiện
-
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
   const signInWithGoogle = async () => {
     await signInWithGooglePopup();
-    // setCurrentUser(user); // set context
   };
 
   const handleSubmit = async (event) => {
@@ -37,9 +34,6 @@ const SignInForm = () => {
 
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
-
-      // setCurrentUser(user); // set context
-
       resetFormFields();
     } catch (error) {
       switch (error.code) {
