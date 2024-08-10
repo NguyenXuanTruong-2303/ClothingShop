@@ -36,3 +36,7 @@ export const selectCategoriesMap = createSelector(
 // và selectCategoriesMap sẽ được gọi lại và thực hiện các phép tính, kể cả khi dữ liệu đầu vào không thay đổi. Điều này làm 
 // giảm hiệu suất ứng dụng.
 // Cải thiện khả năng đọc code: Việc tách các logic tính toán ra các selector riêng biệt giúp code dễ đọc, dễ bảo trì hơn.
+
+
+// =========== Set Spinner Loading================
+export const selectIsLoading = createSelector([selectCategoryReducer],(categoriesSlice) => categoriesSlice.isLoading)

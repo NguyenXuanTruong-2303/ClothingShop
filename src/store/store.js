@@ -9,11 +9,11 @@ import { thunk } from "redux-thunk";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user"],
+  // blacklist: ["user"],
+  whitelist: ['cart'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 
 const composeEnhancer =
   (process.env.NODE_ENV !== "production" &&
@@ -21,10 +21,11 @@ const composeEnhancer =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
 
-  //======================================== Cấu hình store ======================================
-const middleWares = [process.env.NODE_ENV === "development" && logger].filter(
-  Boolean
-);
+//======================================== Cấu hình store ======================================
+const middleWares = [
+  process.env.NODE_ENV === "development" && logger,
+  thunk,
+].filter(Boolean);
 
 const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
