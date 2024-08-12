@@ -41,7 +41,7 @@ googleProvider.setCustomParameters({
 
 export const auth = getAuth();
 
-//================FireStore - Thông tin đăng nhập ======================================
+//================FireStore - Tạo người dùng đăng nhập mới  ======================================
 export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (
@@ -73,7 +73,7 @@ export const createUserDocumentFromAuth = async (
     }
   }
 
-  return userDocRef;
+  return userSnapshot;
 };
 // ========================create Auth User  With Email And Password=========
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -112,7 +112,7 @@ export const addCollectionAndDocuments = async (collectionKey, objectToAdd) => {
   });
   await batch.commit();
 };
-//============================= Get data lên fireStore ====================================
+//============================= Get data từ fireStore ====================================
 // query
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
@@ -130,3 +130,19 @@ export const getCategoriesAndDocuments = async () => {
 
   // return categoryMap;
 };
+
+// cải tiến onAuthStateChangedListener cho oke hơn, nhưng éo hiểu cải tiến làm qq gì =))))
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};
+
+

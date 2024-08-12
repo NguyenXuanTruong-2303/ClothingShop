@@ -1,4 +1,3 @@
-import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 import { createAction } from "../../utils/reducer/reducer.utils";
 import { CATEGORIES_ACTION_TYPES } from "./category.types";
 
@@ -17,14 +16,14 @@ export const fetchCategoriesSuccess = (categoriesArray) =>
 export const fetchCategoriesFailure = (error) =>
   createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
 
-
-//=======================Get Category from FireStore================
-export const fetchCategoriesAsync = () => async (dispatch) => {
-  dispatch(fetchCategoriesStart());
-  try {
-    const categoriesArray = await getCategoriesAndDocuments('categories');
-    dispatch(fetchCategoriesSuccess(categoriesArray));
-  } catch (error) {
-    dispatch(fetchCategoriesFailure(error));
-  }
-};
+//=======================Get Category from FireStore using THUNK ================
+// ====== Bị comment do đã chuyển sang dùng Saga
+// export const fetchCategoriesAsync = () => async (dispatch) => {
+//   dispatch(fetchCategoriesStart());
+//   try {
+//     const categoriesArray = await getCategoriesAndDocuments('categories');
+//     dispatch(fetchCategoriesSuccess(categoriesArray));
+//   } catch (error) {
+//     dispatch(fetchCategoriesFailure(error));
+//   }
+// };
